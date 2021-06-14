@@ -1,0 +1,29 @@
+class Solution {
+public:
+    void fun(int idx,string&s, vector<string>&res)
+    {  if(idx==s.size())
+         return;
+       if(0<=(s[idx]-'0') && (s[idx]-'0')<=9)
+         {  fun(idx+1,s,res);
+            return;
+         }
+       char x;
+       if('a'<=s[idx] && s[idx]<='z')
+         x=(s[idx]-'a')+'A';
+       else
+         x=(s[idx]-'A')+'a';
+       int n=res.size();
+       for(int i=0;i<n;++i)
+       {  string k=res[i];
+          k[idx]=x;
+          res.push_back(k);
+       }
+      fun(idx+1,s,res);
+    }
+    vector<string> letterCasePermutation(string&s) {
+         vector<string>res;
+         res.push_back(s);
+         fun(0,s,res);
+        return res;
+    }
+};
